@@ -22,6 +22,7 @@ export interface CatalogProduct {
   efficiencyPct: number | null;
   liRegulation: string | null;
   ecRegNumber: string | null;
+  imageUrl: string;
   warrantyYears: number;
   stockAccra: number;
   stockKumasi: number;
@@ -46,6 +47,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     efficiencyPct: 22.45,
     liRegulation: "L.I. 2449",
     ecRegNumber: "EC-RE-2449-JK580",
+    imageUrl: "/images/products/solar-panel.jpg",
     warrantyYears: 25,
     stockAccra: 48,
     stockKumasi: 16,
@@ -74,6 +76,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     efficiencyPct: 21.3,
     liRegulation: "L.I. 2449",
     ecRegNumber: "EC-RE-2449-LG550",
+    imageUrl: "/images/products/solar-panel.jpg",
     warrantyYears: 25,
     stockAccra: 36,
     stockKumasi: 12,
@@ -101,6 +104,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     efficiencyPct: 97.6,
     liRegulation: "L.I. 2461",
     ecRegNumber: "EC-RE-2461-DY5K",
+    imageUrl: "/images/products/hybrid-inverter.jpg",
     warrantyYears: 5,
     stockAccra: 14,
     stockKumasi: 5,
@@ -128,6 +132,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     efficiencyPct: 97.6,
     liRegulation: "L.I. 2461",
     ecRegNumber: "EC-RE-2461-DY12K",
+    imageUrl: "/images/products/hybrid-inverter.jpg",
     warrantyYears: 5,
     stockAccra: 6,
     stockKumasi: 2,
@@ -155,6 +160,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     efficiencyPct: 95.0,
     liRegulation: "L.I. 2452",
     ecRegNumber: "EC-RE-2452-FL5K",
+    imageUrl: "/images/products/lifepo4-battery.jpg",
     warrantyYears: 7,
     stockAccra: 18,
     stockKumasi: 7,
@@ -182,6 +188,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     efficiencyPct: 95.0,
     liRegulation: "L.I. 2452",
     ecRegNumber: "EC-RE-2452-FL10K",
+    imageUrl: "/images/products/lifepo4-battery.jpg",
     warrantyYears: 7,
     stockAccra: 10,
     stockKumasi: 4,
@@ -209,6 +216,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     efficiencyPct: 22.0,
     liRegulation: "L.I. 2449 / 2452 / 2461",
     ecRegNumber: "EC-RE-BND-3K",
+    imageUrl: "/images/products/turnkey-bundle.svg",
     warrantyYears: 5,
     stockAccra: 8,
     stockKumasi: 3,
@@ -237,6 +245,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     efficiencyPct: 22.45,
     liRegulation: "L.I. 2449 / 2452 / 2461",
     ecRegNumber: "EC-RE-BND-5K",
+    imageUrl: "/images/products/turnkey-bundle.svg",
     warrantyYears: 5,
     stockAccra: 5,
     stockKumasi: 2,
@@ -265,6 +274,7 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     efficiencyPct: 22.45,
     liRegulation: "L.I. 2449 / 2452 / 2461",
     ecRegNumber: "EC-RE-BND-12K",
+    imageUrl: "/images/products/turnkey-bundle.svg",
     warrantyYears: 5,
     stockAccra: 3,
     stockKumasi: 1,

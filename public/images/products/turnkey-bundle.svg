@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" fill="#F1F5F9"/>
+  <ellipse cx="400" cy="430" rx="290" ry="28" fill="#CBD5E1" opacity="0.55"/>
+
+  <!-- Solar Panel (Left) -->
+  <g transform="translate(85, 85) skewY(-6)">
+    <rect x="0" y="0" width="230" height="300" rx="10" fill="#0F172A" stroke="#94A3B8" stroke-width="8"/>
+    <g stroke="#334155" stroke-width="2">
+      <line x1="57" y1="6" x2="57" y2="294"/>
+      <line x1="115" y1="6" x2="115" y2="294"/>
+      <line x1="173" y1="6" x2="173" y2="294"/>
+      <line x1="6" y1="60" x2="224" y2="60"/>
+      <line x1="6" y1="120" x2="224" y2="120"/>
+      <line x1="6" y1="180" x2="224" y2="180"/>
+      <line x1="6" y1="240" x2="224" y2="240"/>
+    </g>
+    <rect x="10" y="10" width="210" height="280" fill="url(#panelGloss)" opacity="0.25"/>
+  </g>
+
+  <!-- Hybrid Inverter (Center) -->
+  <g transform="translate(340, 105)">
+    <rect x="0" y="0" width="150" height="215" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="4"/>
+    <rect x="14" y="16" width="122" height="52" rx="6" fill="#0F172A"/>
+    <rect x="24" y="28" width="58" height="26" rx="4" fill="#0284C7"/>
+    <circle cx="116" cy="41" r="6" fill="#10B981"/>
+    <rect x="26" y="90" width="98" height="8" rx="4" fill="#E2E8F0"/>
+    <rect x="26" y="108" width="72" height="8" rx="4" fill="#E2E8F0"/>
+    <rect x="30" y="215" width="14" height="16" rx="2" fill="#334155"/>
+    <rect x="106" y="215" width="14" height="16" rx="2" fill="#334155"/>
+    <text x="75" y="176" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#334155">HYBRID 50Hz</text>
+  </g>
+
+  <!-- LiFePO4 Battery Stack (Right) -->
+  <g transform="translate(525, 165)">
+    <rect x="0" y="0" width="190" height="235" rx="12" fill="#1E293B" stroke="#475569" stroke-width="4"/>
+    <rect x="16" y="18" width="158" height="52" rx="8" fill="#FFFFFF"/>
+    <rect x="30" y="36" width="84" height="14" rx="7" fill="#0EA5E9"/>
+    <circle cx="150" cy="43" r="6" fill="#10B981"/>
+    <rect x="16" y="88" width="158" height="58" rx="8" fill="#0F172A"/>
+    <rect x="16" y="160" width="158" height="58" rx="8" fill="#0F172A"/>
+    <text x="95" y="122" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#F8FAFC">LiFePO4 48V</text>
+    <text x="95" y="194" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#38BDF8">L.I. 2452 BMS</text>
+  </g>
+
+  <!-- Badge -->
+  <rect x="275" y="24" width="250" height="36" rx="18" fill="#F59E0B"/>
+  <text x="400" y="47" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="800" fill="#0F172A">COMPLETE TURNKEY SOLAR KIT</text>
+
+  <defs>
+    <linearGradient id="panelGloss" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+</svg>
