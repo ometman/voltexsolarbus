@@ -108,18 +108,28 @@ export default async function ProductDetailPage({
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
-          <h2 className="text-sm font-bold uppercase tracking-wide text-slate-800">
-            Technical Specifications
-          </h2>
-          <dl className="mt-4 divide-y divide-slate-200 text-sm">
-            {Object.entries(product.specs).map(([key, value]) => (
-              <div key={key} className="flex justify-between gap-4 py-2.5">
-                <dt className="font-medium text-slate-600">{key}</dt>
-                <dd className="text-right font-semibold text-slate-900">{value}</dd>
-              </div>
-            ))}
-          </dl>
+        <div className="space-y-5">
+          <div className="overflow-hidden rounded-xl border border-slate-200 bg-slate-100">
+            <img
+              src={product.imageUrl}
+              alt={product.name}
+              className="aspect-[16/10] w-full object-cover"
+            />
+          </div>
+
+          <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+            <h2 className="text-sm font-bold uppercase tracking-wide text-slate-800">
+              Technical Specifications
+            </h2>
+            <dl className="mt-4 divide-y divide-slate-200 text-sm">
+              {Object.entries(product.specs).map(([key, value]) => (
+                <div key={key} className="flex justify-between gap-4 py-2.5">
+                  <dt className="font-medium text-slate-600">{key}</dt>
+                  <dd className="text-right font-semibold text-slate-900">{value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
       </div>
     </main>
