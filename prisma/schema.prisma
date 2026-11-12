@@ -1,0 +1,189 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ProductCategory {
+  SOLAR_PANEL
+  HYBRID_INVERTER
+  BATTERY_STORAGE
+  TURNKEY_BUNDLE
+  ACCESSORY
+}
+
+enum ElectricalPhase {
+  SINGLE_PHASE
+  THREE_PHASE
+}
+
+enum OrderStatus {
+  PENDING_PAYMENT
+  AUDIT_SCHEDULED
+  DEPOSIT_PAID
+  DISPATCHED
+  INSTALLED
+  COMMISSIONED
+  CANCELLED
+}
+
+enum PaymentMode {
+  FULL
+  MILESTONE
+  SITE_AUDIT
+}
+
+enum PaymentChannel {
+  MOMO_MTN
+  MOMO_TELECEL
+  MOMO_AT
+  BANK_TRANSFER
+  CARD
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}
+
+enum AuditStatus {
+  REQUESTED
+  SCHEDULED
+  COMPLETED
+  CANCELLED
+}
+
+model Product {
+  id            String          @id @default(cuid())
+  sku           String          @unique
+  slug          String          @unique
+  name          String
+  brand         String
+  category      ProductCategory
+  description   String
+  priceGhs      Int
+  wattage       Int?
+  capacityKwh   Float?
+  phase         ElectricalPhase?
+  efficiencyPct Float?
+  liRegulation  String?         // e.g. "L.I. 2449", "L.I. 2452", "L.I. 2461"
+  ecRegNumber   String?
+  datasheetUrl  String?
+  imageUrl      String?
+  warrantyYears Int             @default(5)
+  stockAccra    Int             @default(0)
+  stockKumasi   Int             @default(0)
+  featured      Boolean         @default(false)
+  active        Boolean         @default(true)
+  specs         Json?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  orderItems OrderItem[]
+  serialLogs SerialNumberLog[]
+}
+
+model LoadCalculation {
+  id                  String          @id @default(cuid())
+  customerName        String?
+  phone               String?
+  region              String          @default("Greater Accra")
+  propertyType        String
+  phase               ElectricalPhase
+  autonomyHours       Int
+  appliancesJson      Json
+  totalRunningWatts   Int
+  peakSurgeWatts      Int
+  dailyEnergyKwh      Float
+  recommendedKva      Float
+  recommendedKwh      Float
+  recommendedSolarKw  Float
+  recommendedBundleId String?
+  createdAt           DateTime        @default(now())
+}
+
+model Order {
+  id             String      @id @default(cuid())
+  orderNumber    String      @unique
+  customerName   String
+  customerPhone  String
+  customerEmail  String?
+  region         String
+  address        String
+  ghanaPostGps   String?
+  status         OrderStatus @default(PENDING_PAYMENT)
+  paymentMode    PaymentMode @default(FULL)
+  subtotalGhs    Int
+  installationGhs Int        @default(0)
+  totalGhs       Int
+  quoteExpiresAt DateTime
+  notes          String?
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  items      OrderItem[]
+  milestones PaymentMilestone[]
+  siteAudits SiteAudit[]
+  serialLogs SerialNumberLog[]
+}
+
+model OrderItem {
+  id           String  @id @default(cuid())
+  orderId      String
+  productId    String
+  quantity     Int
+  unitPriceGhs Int
+
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model PaymentMilestone {
+  id           String          @id @default(cuid())
+  orderId      String
+  label        String          // e.g. "Site Audit Fee", "30% Booking Deposit", "Full Payment"
+  amountGhs    Int
+  channel      PaymentChannel?
+  paystackRef  String?         @unique
+  status       PaymentStatus   @default(PENDING)
+  paidAt       DateTime?
+  createdAt    DateTime        @default(now())
+
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}
+
+model SiteAudit {
+  id           String          @id @default(cuid())
+  orderId      String?
+  customerName String
+  phone        String
+  region       String
+  address      String
+  ghanaPostGps String?
+  roofType     String?
+  phase        ElectricalPhase @default(SINGLE_PHASE)
+  preferredDate DateTime?
+  status       AuditStatus     @default(REQUESTED)
+  notes        String?
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+
+  order Order? @relation(fields: [orderId], references: [id], onDelete: SetNull)
+}
+
+model SerialNumberLog {
+  id             String    @id @default(cuid())
+  orderId        String
+  productId      String
+  serialOrImei   String    @unique
+  warrantyMonths Int       @default(60)
+  commissionedAt DateTime?
+  createdAt      DateTime  @default(now())
+
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id])
+}
