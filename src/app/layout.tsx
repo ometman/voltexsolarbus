@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { CartProvider } from "@/context/CartContext";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Voltex Solar Ghana | Energy Commission Compliant Solar & Storage",
@@ -14,8 +17,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen antialiased bg-slate-50 text-slate-900">
-        {children}
+      <body className="flex min-h-screen flex-col antialiased bg-slate-50 text-slate-900">
+        <CartProvider>
+          <Navbar />
+          <div className="flex-1">{children}</div>
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );
